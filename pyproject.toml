@@ -1,0 +1,69 @@
+[build-system]
+requires = ["setuptools>=64.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "verspermythos"
+version = "0.1.0"
+description = "VersperMythos — Unified LLM/VLM/Recurrent Transformer Framework"
+readme = "README.md"
+requires-python = ">=3.12"
+authors = [
+    { name = "BoHao Chen" },
+]
+dependencies = [
+    "datasets>=4.8.5",
+    "einops>=0.8.2",
+    "modelscope>=1.36.3",
+    "numpy>=2.4.4",
+    "pillow>=12.2.0",
+    "tiktoken>=0.12.0",
+    "torch>=2.11.0",
+    "torchvision>=0.26.0",
+    "transformers>=5.8.0",
+]
+
+[project.optional-dependencies]
+lm = [
+    "torch>=2.6.0",
+    "transformers>=4.57.1",
+    "datasets>=3.6.0",
+    "tiktoken>=0.10.0",
+    "einops>=0.8.1",
+    "wandb>=0.18.3",
+    "swanlab>=0.6.8",
+    "numpy>=1.26.4",
+    "scikit-learn>=1.5.1",
+    "sentence-transformers>=2.3.1",
+    "trl>=0.13.0",
+    "peft>=0.7.1",
+    "streamlit>=1.50.0",
+    "rich>=13.7.1",
+    "pydantic>=2.11.5",
+]
+vlm = [
+    "verspermythos[lm]",
+    "torchvision>=0.21.0",
+    "Pillow",
+    "pyarrow>=23.0.0",
+    "gradio>=5.49.1",
+    "modelscope-studio>=1.6.1",
+]
+rlm = [
+    "torch>=2.1.0",
+    "transformers>=4.40.0",
+    "datasets>=2.18.0",
+]
+tui = [
+    "verspermythos[all]",
+    "pydantic>=2.11.5",
+]
+all = [
+    "verspermythos[lm,vlm,rlm]",
+]
+
+[project.scripts]
+verspermythos = "tui.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
